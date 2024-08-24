@@ -1,6 +1,6 @@
 package classexes;
 
-public class opg1 {
+public class Opg1 {
     // section opg 1.1
     public static void main(String[] args) {
         int[][] numbers = {{0,4,3,9,6},

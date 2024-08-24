@@ -2,7 +2,7 @@ package classexes;
 
 import java.util.Scanner;
 
-public class opg4 {
+public class Opg4 {
     public static void main(String[] args) {
         int[][] seatPrices = {{10,10,10,10,10,10,10,10,10,10},
                               {10,10,10,10,10,10,10,10,10,10},
@@ -18,17 +18,27 @@ public class opg4 {
         for (int i = 0; i < 4; i++) {
             System.out.print("Indtast en billet pris: ");
             int[] available = isTicketAvailable(seatPrices, input.nextInt());
-            if (available[0] != 0 & available[1] != 0) {
-                System.out.printf("Bedste ledige sæde er på række: %d sæde: %d",
-                        available[0], available[1]);
+            if (available[0] == 0 & available[1] == 0) {
+                System.out.println("Ingen pladser med denne pris er tilgængelige!\n");
             } else {
-                System.out.println("Ingen pladser med denne pris er tilgængelige!");
+                int rowNo = available[0];
+                int colNo = available[1];
+                System.out.printf("Bedste ledige sæde er på række: %d sæde: %d\n", rowNo, colNo);
+                System.out.print("Ønsker du at købe denne plads? (y/n) ");
+                String inp = input.next();
+                if (inp.equalsIgnoreCase("y")) {
+                    System.out.printf("Sæde: %d, plads: %d købt.\n\n", rowNo, colNo);
+                    buyTicket(seatPrices, rowNo, colNo);
+                } else {
+                    System.out.println("Køb annuleret.\n");
+                }
             }
+            printTheaterFloor(seatPrices);
             System.out.println();
         }
 
-        buyTicket(seatPrices, 4, 5);
-        printTheaterFloor(seatPrices);
+        //buyTicket(seatPrices, 4, 5);
+        //printTheaterFloor(seatPrices);
     }
 
     public static int[] isTicketAvailable(int[][] seats, int price) {
@@ -51,7 +61,7 @@ public class opg4 {
     public static boolean buyTicket(int[][] seats, int rowNo, int seatNo) {
         boolean available = false;
 
-        if (seats[rowNo][seatNo] != 0) {
+        if (seats[rowNo-1][seatNo-1] != 0) {
             seats[rowNo-1][seatNo-1] = 0;
             available = true;
         }

@@ -3,7 +3,7 @@ package classexes;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class opg3_B813 {
+public class Opg3_B813 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 

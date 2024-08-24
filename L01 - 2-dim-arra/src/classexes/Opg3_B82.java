@@ -2,7 +2,7 @@ package classexes;
 
 import java.util.Scanner;
 
-public class opg3_B82 {
+public class Opg3_B82 {
     public static void main(String[] args) {
         double[][] m = new double[4][4];
         System.out.println(averageMajorDiagonal(m));
