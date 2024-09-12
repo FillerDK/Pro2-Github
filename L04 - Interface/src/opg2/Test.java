@@ -1,6 +1,7 @@
 package opg2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
@@ -8,8 +9,13 @@ public class Test {
 
         customers[0] = new Customer("Jens", "Hansen", 65);
         customers[1] = new Customer("Søren", "Petersen", 65);
-        customers[2] = new Customer("Jens", "Hansen", 65);
-        customers[3] = new Customer("Jens", "Hansen", 65);
+        customers[2] = new Customer("Jens", "Sørensen", 85);
+        customers[3] = new Customer("Jens", "Sørensen", 65);
+
+        Customer c1 = new Customer("Philip", "Ingerslev", 22);
+
+        System.out.println(biggestCustomer(customers).toString());
+        System.out.println(Arrays.toString(biggerThanCustomer(customers, c1)));
     }
 
     /**

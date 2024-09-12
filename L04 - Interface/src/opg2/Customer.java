@@ -38,4 +38,15 @@ public class Customer implements Comparable<Customer> {
             return lastname;
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("""
+                --------------------
+                First name: %s
+                Last name:  %s
+                Age:        %d
+                --------------------
+                """, firstName, lastName, age);
+    }
 }

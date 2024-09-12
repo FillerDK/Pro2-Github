@@ -1,0 +1,44 @@
+	  STACK
+
+	+------+
+	|      | args    <- main() stack frame 
+    +------+
+	|  2   | n       <- f(2) stack frame
+	|  8   | a
+    +------+    
+	|  1   | n       <- f(1) stack frame
+	|  8   | a
+    +------+    
+	|  0   | n       <- f(0) stack frame
+	|  8   | a
+    +------+    
+    
+    
+    
+    
+    
+    
+    
+    /* Recursion tree:
+    
+    							          fib(5)
+    						         /              \
+    						fib(3)                          fib(4)
+                          /      \                       /         \
+                     fib(1)    fib(2)                  fib(2)         fib(3)
+                              /      \                /      \        /      \   
+                           fib(0)    fib(1)      fib(0)    fib(1)   fib(1)    fib(2) 
+                                                                             /       \
+                                                                           fib(0)    fib(1)
+    
+    
+    
+    
+    
+    
+    
+    5^4 = 5^3 * 5 = 5^2 * 5 * 5 = 5^1 * 5 * 5 * 5 = 5^0 * 5 *5*5*5 = 1 *5*5*5*5
+    
+    
+    
+    */
