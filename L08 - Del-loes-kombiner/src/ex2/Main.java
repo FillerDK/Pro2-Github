@@ -15,7 +15,7 @@ public class Main {
         list.add(0);
         list.add(0);
         list.add(0);
-        list.add(0);
+        list.add(1);
 
         System.out.println(countZeroes(list));
     }
@@ -28,15 +28,13 @@ public class Main {
     }
 
     private static int countZeroes(ArrayList<Integer> list, int low, int high) {
-        int count = 0;
         if (low == high) {
-            count += (list.get(low) == 0) ? 1 : 0;
-            return count;
+            return list.get(low) == 0 ? 1 : 0;
         } else {
             int mid = (low + high) / 2;
-            count += countZeroes(list, low, mid);
-            count += countZeroes(list, mid + 1, high);
-            return count;
+            int left = countZeroes(list, low, mid);
+            int right = countZeroes(list, mid + 1, high);
+            return left + right;
         }
     }
 }

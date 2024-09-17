@@ -1,10 +1,10 @@
 package classex.opg5;
 
 public class Vehicle {
-    private final String make;
-    private final String model;
-    private final int year;
-    private final double mileage;
+    private final String make; // The make of the vehicle (e.g., "Toyota", "Ford", etc.).
+    private final String model; // The model of the vehicle (e.g., "Camry", "Focus", etc.).
+    private final int year; // The manufacturing of the vehicle.
+    private final double mileage; // The current mileage of the vehicle.
 
     Vehicle(String make, String model, int year, double mileage) {
         this.make = make;
