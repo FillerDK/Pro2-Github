@@ -16,7 +16,7 @@ public class Motorcycle extends Vehicle {
 
     @Override
     void start() {
-        System.out.println("Startubg the Motorcycle...");
+        System.out.println("Starting the Motorcycle...");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class Motorcycle extends Vehicle {
 
     @Override
     void action() {
-        System.out.println("Revving the engine!");
+        System.out.println("Performing motorcycle-specific action: Revving the engine!");
     }
 }

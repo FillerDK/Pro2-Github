@@ -26,6 +26,6 @@ public class Truck extends Vehicle {
 
     @Override
     void action() {
-        System.out.println("Activating hydralic lift!");
+        System.out.println("Performing truck-specific action: Activating hydralic lift!");
     }
 }

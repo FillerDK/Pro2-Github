@@ -21,11 +21,11 @@ public class Car extends Vehicle {
 
     @Override
     void stop() {
-        System.out.println("Stopping the car...");
+        System.out.println("Stopping the Car...");
     }
 
     @Override
     void action() {
-        System.out.println("Honking the horn!");
+        System.out.println("Performing car-specific action: Honking the horn!");
     }
 }
