@@ -8,12 +8,16 @@ public class Customer {
     private String name;
     private final LocalDate birthday;
 
+    // association 0..* --> 0..1 Discount
+    private Discount discount;
+
     // association 1 --> 0..* Order
     private final ArrayList<Order> orders = new ArrayList<>();
 
     public Customer(String name, LocalDate birthday) {
         this.name = name;
         this.birthday = birthday;
+        this.discount = null;
     }
 
     public String getName() {
@@ -48,5 +52,20 @@ public class Customer {
         }
 
         return total;
+    }
+
+    // Set the discount for the customer
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    // Calculate the total price with the discount
+    public double totalBuyWithDiscount() {
+        double totalPrice = totalBuy(); // Get total price without discount
+        if (discount != null) {
+            double discountAmount = discount.getDiscount(totalPrice);
+            return totalPrice - discountAmount; // Apple the discount
+        }
+        return totalPrice; // No discount, return full price
     }
 }

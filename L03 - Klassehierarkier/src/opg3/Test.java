@@ -67,7 +67,14 @@ public class Test {
         o6.addOrderLine(ol11);
         o6.addOrderLine(ol12);
 
-        System.out.println(c1.totalBuy());
-        System.out.println(c2.totalBuy());
+        // Assign discounts
+        c1.setDiscount(new PercentDiscount());
+        c2.setDiscount(new FixedDiscount());
+
+        System.out.println("Total buy for c1: " + c1.totalBuy());
+        System.out.println("Total buy with discount for c1: " + c1.totalBuyWithDiscount());
+        System.out.println();
+        System.out.println("Total buy for c2: " + c2.totalBuy());
+        System.out.println("Total buy with discount for c2: " + c2.totalBuyWithDiscount());
     }
 }
