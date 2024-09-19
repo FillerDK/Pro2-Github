@@ -64,7 +64,7 @@ public class Customer {
         double totalPrice = totalBuy(); // Get total price without discount
         if (discount != null) {
             double discountAmount = discount.discountedPrice(totalPrice);
-            return totalPrice - discountAmount; // Apple the discount
+            return totalPrice - discountAmount; // Apply the discount
         }
         return totalPrice; // No discount, return full price
     }
