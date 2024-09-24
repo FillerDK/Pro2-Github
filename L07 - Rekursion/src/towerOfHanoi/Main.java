@@ -1,4 +1,4 @@
-package TowerOfHanoi;
+package towerOfHanoi;
 
 public class Main {
     /*
