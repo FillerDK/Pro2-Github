@@ -36,8 +36,6 @@ public class Gui extends Application {
         pane.setHgap(10);
         pane.setVgap(10);
 
-        drawTriangle(pane, 1);
-
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.BASELINE_CENTER);
         hBox.setSpacing(10);
@@ -50,24 +48,24 @@ public class Gui extends Application {
         hBox.getChildren().addAll(btnDec, lblOrder, btnAsc);
     }
 
-    public void drawTriangle(GridPane pane, int order) {
+    public Polygon drawTriangle(int order) {
         int x = 50;
         int y = 300;
         int h = 300;
+        Polygon p = null;
 
         if (order == 0) {
             // Polygon with 3 points (50,150), (100,50) and (150,150)
-            Polygon polygon = new Polygon(x, y, x + h, y - h, x + 2*h, y);
-            polygon.setFill(Color.TRANSPARENT);
-            polygon.setStroke(Color.BLACK);
-            pane.getChildren().add(polygon);
+            p = new Polygon(x, y, x + h, y - h, x + 2*h, y);
+            p.setFill(Color.TRANSPARENT);
+            p.setStroke(Color.BLACK);
         } else {
-            Polygon polygon = new Polygon(x, y, x + h/2, y - h/2, x + h, y);
-            polygon.setFill(Color.TRANSPARENT);
-            polygon.setStroke(Color.BLACK);
-            pane.getChildren().add(polygon);
+            p = new Polygon(x, y, x + h/2, y - h/2, x + h, y);
+            p.setFill(Color.TRANSPARENT);
+            p.setStroke(Color.BLACK);
 
-            drawTriangle(pane, order - 1);
+            drawTriangle(order - 1);
         }
+        return p;
     }
 }
