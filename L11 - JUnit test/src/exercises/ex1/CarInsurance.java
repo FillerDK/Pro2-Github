@@ -30,9 +30,9 @@ public class CarInsurance {
     public double calculatePremium(int age, boolean isWoman,
                                    int yearsWithoutDamage) {
         if (age < 18) {
-            throw new RuntimeException("Too young!");
+            throw new TooYoungException("Too young!");
         } else if (yearsWithoutDamage < 0 || yearsWithoutDamage > age-18) {
-            throw new RuntimeException("Too few years!");
+            throw new InvalidYearsException("Too few years!");
         }
 
         double premium = basisPremium;

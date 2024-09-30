@@ -3,6 +3,7 @@ package sirpinskiTriangles;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,6 +47,9 @@ public class Gui extends Application {
         Label lblOrder = new Label("Order: 0");
 
         hBox.getChildren().addAll(btnDec, lblOrder, btnAsc);
+
+        pane.add(drawTriangle(0), 0, 0);
+        pane.add(drawTriangle(1), 0, 0);
     }
 
     public Polygon drawTriangle(int order) {
