@@ -28,6 +28,7 @@ public class XTownMunicipalityTest {
         int tc14 = town.totalPayment(1, 2);
         int tc15 = town.totalPayment(3, 1);
         int tc16 = town.totalPayment(1, 3);
+        int tc17 = town.totalPayment(2, 2);
 
         // Assert
         assertEquals(0, tc1);
@@ -47,5 +48,7 @@ public class XTownMunicipalityTest {
         assertEquals(3500, tc14);
         assertEquals(5500, tc15);
         assertEquals(4000, tc16);
+
+        assertEquals(4250, tc17);
     }
 }
