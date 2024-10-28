@@ -23,7 +23,6 @@ public class Ex4 {
         while (runnerIterator.hasNext()) {
             Runner runner = runnerIterator.next();
             if (runner.getLapTime() >= 40) {
-                runners.remove(runner);
                 runnerIterator.remove();
             }
         }

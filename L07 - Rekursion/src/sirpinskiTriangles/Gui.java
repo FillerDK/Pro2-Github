@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -31,17 +32,19 @@ public class Gui extends Application {
         window.show();
     }
 
-    public void initContent(GridPane pane) {
-        pane.setPadding(new Insets(20));
-        pane.setHgap(10);
-        pane.setVgap(10);
+    public void initContent(GridPane gridPane) {
+        gridPane.setPadding(new Insets(20));
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
 
-        drawTriangle(pane, 400, 300, 300, 2);
+        Pane pane = new Pane();
+        drawTriangle(pane, 400, 300, 300, 4);
+        gridPane.add(pane, 0, 0);
 
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.BASELINE_CENTER);
         hBox.setSpacing(10);
-        pane.add(hBox, 0, 1);
+        gridPane.add(hBox, 0, 1);
 
         Button btnDec = new Button("<");
         Button btnAsc = new Button(">");
@@ -50,7 +53,7 @@ public class Gui extends Application {
         hBox.getChildren().addAll(btnDec, lblOrder, btnAsc);
     }
 
-    private void drawTriangle(GridPane pane, double x, double y, double size, int order) {
+    private void drawTriangle(Pane pane, double x, double y, double size, int order) {
         if (order == 0) {
             Polygon triangle = createTriangle(x, y, size);
             triangle.setFill(null);
