@@ -3,6 +3,7 @@ package ex4;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Ex4 {
 
@@ -18,6 +19,8 @@ public class Ex4 {
         System.out.println(runners);
         System.out.println();
 
+        /**
+        // opg. b
         // OBS: Throws exception.
         Iterator<Runner> runnerIterator = runners.iterator();
         while (runnerIterator.hasNext()) {
@@ -27,6 +30,29 @@ public class Ex4 {
             }
         }
         System.out.println(runners);
+         */
+
+        // opg. d
+        /**
         System.out.println();
+        Predicate<Runner> filterD = r -> r.getLapTime() >= 40;
+        System.out.println(removeIf(runners, filterD));
+        System.out.println(runners);
+        */
+
+        // opg. e
+        Predicate<Runner> filterE = r -> r.getLapTime() >= 40;
+        runners.removeIf(filterE);
+        System.out.println(runners);
+    }
+
+    // opg. c
+    /**
+     * Remove runners that satifsies the given filter.
+     * Return true, if any runner is removed.
+     */
+    public static boolean removeIf(
+            List<Runner> runners, Predicate<Runner> filter) {
+        return runners.removeIf(filter);
     }
 }
