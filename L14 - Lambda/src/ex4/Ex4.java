@@ -19,7 +19,6 @@ public class Ex4 {
         System.out.println(runners);
         System.out.println();
 
-        /**
         // opg. b
         // OBS: Throws exception.
         Iterator<Runner> runnerIterator = runners.iterator();
@@ -30,7 +29,6 @@ public class Ex4 {
             }
         }
         System.out.println(runners);
-         */
 
         // opg. d
         /**
