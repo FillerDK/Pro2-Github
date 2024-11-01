@@ -39,11 +39,11 @@ public class Ex4 {
 
         int i1 = low;
         int i2 = middle + 1;
-        while (i1 < middle + 1 && i2 < high) {
+        while (i1 <= middle && i2 <= high) {
             int t1 = list.get(i1);
             int t2 = list.get(i2);
 
-            if (Integer.compare(t1, t2) <= 0) {
+            if (t1 <= t2) {
                 temp.add(t1);
                 i1++;
             } else {
@@ -52,34 +52,20 @@ public class Ex4 {
             }
         }
 
-        while (i1 < middle + 1) {
+        while (i1 <= middle) {
             temp.add(list.get(i1));
             i1++;
         }
 
-        while (i2 < high) {
+        while (i2 <= high) {
             temp.add(list.get(i2));
             i2++;
+        }
+
+        for (int i = low; i <= high; i++) {
+            list.set(i, temp.get(i - low));
         }
     }
 }
 
 
-
-/*
-                            Merge sort tree
-                      [13, 7, 48, 17, 24, 8, 5, 33]
-                      //                        \\
-                   (0, 3)                      (4, 7)
-                   //                             \\
-            [13, 7, 48, 17]                 [24, 8, 5, 33]
-            //       \\                      //        \\
-         (0, 1)     (2, 3)               (4, 5)       (6, 7)
-         //            \\                 //             \\
-     [13, 7]         [48, 17]         [24, 8]          [5, 33]
-     --------------------------Merge---------------------------
-         \\          //                    \\         //
-        [7, 13, 17, 48]                   [5, 8, 24, 33]
-                   \\                       //
-                  [5, 7, 8, 13, 17, 24, 33, 48]
- */
