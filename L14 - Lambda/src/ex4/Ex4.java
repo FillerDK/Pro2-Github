@@ -51,7 +51,15 @@ public class Ex4 {
      */
     public static boolean removeIf(
             List<Runner> runners, Predicate<Runner> filter) {
-        //TODO
-        return runners.removeIf(filter);
+        boolean removed = false;
+        Iterator<Runner> runnerIterator = runners.iterator();
+        while (runnerIterator.hasNext()) {
+            Runner runner = runnerIterator.next();
+            if (filter.test(runner)) {
+                runnerIterator.remove();
+                removed = true;
+            }
+        }
+        return removed;
     }
 }
