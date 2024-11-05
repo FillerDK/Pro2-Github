@@ -51,6 +51,7 @@ public class Ex4 {
      */
     public static boolean removeIf(
             List<Runner> runners, Predicate<Runner> filter) {
+        //TODO
         return runners.removeIf(filter);
     }
 }

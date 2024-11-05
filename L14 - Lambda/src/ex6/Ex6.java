@@ -14,7 +14,7 @@ public class Ex6 {
             strings[i] = str;
         }
 
-        selectionSort(strings, );
+        //selectionSort(strings, );
     }
 
     public static <E> void selectionSort (E[] list,
