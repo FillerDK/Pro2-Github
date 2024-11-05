@@ -55,6 +55,7 @@ public class ArrayBag<E> implements Bag<E> {
             int ran = r.nextInt(1, size);
             ret = items[ran];
             items[ran] = null;
+            size--;
         }
         return ret;
     }
