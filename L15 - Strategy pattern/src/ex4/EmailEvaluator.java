@@ -4,17 +4,17 @@ public class EmailEvaluator implements Evaluator {
     /** Returns true, if the param s contains a valid email address. */
     @Override
     public boolean isValid(String s) {
-        //TODO
+        boolean valid = true;
+        String[] words = s.split("[@\\.]", -1);
+
         if (!s.contains("@"))
-            return false;
-
-        if (s.indexOf("@") != s.lastIndexOf("@"))
-            return false;
-
-        if (!isWord(s.split("@", 2)[0]))
-            return false;
-
-        return true;
+            valid = false;
+        else
+            if (s.indexOf("@") != s.lastIndexOf("@"))
+                valid = false;
+        for (int i = 0; valid && i < words.length; i++)
+            valid = isWord(words[i]);
+        return valid;
     }
 
     /**
@@ -23,13 +23,15 @@ public class EmailEvaluator implements Evaluator {
      * are in 'A'..'Z', 'a'..'z' or '0'..'9'.
      */
     public boolean isWord(String s) {
-        for (String str : s.split(".", -1)) {
-            for(char c : str.toCharArray()) {
+        boolean valid = true;
+        if (s.length() == 0)
+            valid = false;
+        else
+            for(char c : s.toCharArray()) {
                 if (!Character.isLetterOrDigit(c)) {
-                    return false;
-                }
+                    valid = false;
             }
         }
-        return true;
+        return valid;
     }
 }
