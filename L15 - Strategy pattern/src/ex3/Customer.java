@@ -20,11 +20,11 @@ public class Customer implements Comparable<Customer> {
         return name;
     }
 
-    public Comparator<Customer> getComp() {
+    public static Comparator<Customer> getComp() {
         return comp;
     }
 
-    public void setComp(Comparator<Customer> comp) {
+    public static void setComp(Comparator<Customer> comp) {
         Customer.comp = comp;
     }
 
