@@ -5,7 +5,16 @@ public class EmailEvaluator implements Evaluator {
     @Override
     public boolean isValid(String s) {
         //TODO
-        return false;
+        if (!s.contains("@"))
+            return false;
+
+        if (s.indexOf("@") != s.lastIndexOf("@"))
+            return false;
+
+        if (!isWord(s.split("@", 2)[0]))
+            return false;
+
+        return true;
     }
 
     /**
@@ -14,7 +23,13 @@ public class EmailEvaluator implements Evaluator {
      * are in 'A'..'Z', 'a'..'z' or '0'..'9'.
      */
     public boolean isWord(String s) {
-        //TODO
-        return false;
+        for (String str : s.split(".", -1)) {
+            for(char c : str.toCharArray()) {
+                if (!Character.isLetterOrDigit(c)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
