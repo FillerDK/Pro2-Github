@@ -21,10 +21,13 @@ public class Salesman implements BookObserver {
                     books.add(b);
 
         System.out.printf("""
-                ----------------------------------------------------------------
                 Books bought by other people who also bought: %s
                 """, book.getTitle());
-        for (Book b : books)
-            System.out.println(b.getTitle());
+        if (books.size() < 1) System.out.println("None");
+        else {
+            for (Book b : books)
+                System.out.println(b.getTitle());
+        }
+        System.out.println();
     }
 }

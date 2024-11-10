@@ -21,19 +21,19 @@ public class Book {
     }
 
     // Q3
-    private final ArrayList<Buyer> observers = new ArrayList<>();
+    private final ArrayList<BookObserver> observers = new ArrayList<>();
 
-    public void registerObserver(Buyer buyer) {
-        observers.add(buyer);
+    public void registerObserver(BookObserver observer) {
+        observers.add(observer);
     }
 
-    public void removeObserver(Buyer buyer) {
-        observers.remove(buyer);
+    public void removeObserver(BookObserver observer) {
+        observers.remove(observer);
     }
 
     public void notifyObservers() {
-        for (Buyer b : observers) {
-            b.update(this);
+        for (BookObserver observer : observers) {
+            observer.update(this);
         }
     }
 
