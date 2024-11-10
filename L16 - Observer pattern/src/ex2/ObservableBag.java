@@ -13,12 +13,15 @@ public class ObservableBag implements Bag, Iterable<String> {
     public void add(String s) {
         if (!items.containsKey(s)) items.put(s, 1);
         else items.put(s, items.get(s) + 1);
+        notifyObservers();
     }
 
     @Override
     public void remove(String s) {
-        if (items.get(s) > 1) items.put(s, items.get(s) - 1);
+        if (items.get(s) > 1)
+            items.put(s, items.get(s) - 1);
         else items.remove(s);
+        notifyObservers();
     }
 
     @Override
