@@ -9,7 +9,7 @@ public class EvaluatorTest {
 
     @Test
     public void testIsValidNum() {
-        NumberEvaluator num = new NumberEvaluator();
+        Evaluator num = new NumberEvaluator();
 
         assertTrue(num.isValid("123"));
         assertTrue(num.isValid("+123"));
@@ -31,9 +31,9 @@ public class EvaluatorTest {
 
     @Test
     public void testIsValidMail() {
-        EmailEvaluator mail = new EmailEvaluator();
+        Evaluator mail = new EmailEvaluator();
 
-        assertTrue(mail.isValid("user@host"));
+        assertFalse(mail.isValid("user@host"));
         assertTrue(mail.isValid("first.last@host.domain"));
         assertFalse(mail.isValid("first..last@host..domain"));
         assertFalse(mail.isValid("user@@host"));

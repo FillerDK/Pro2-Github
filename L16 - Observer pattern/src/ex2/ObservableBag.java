@@ -5,8 +5,8 @@ import java.util.function.Consumer;
 
 public class ObservableBag implements Bag, Iterable<String> {
     // items in the bag
-    Map<String, Integer> items = new HashMap<>();
-    ArrayList<MyObserver> observers = new ArrayList<>();
+    private final Map<String, Integer> items = new HashMap<>();
+    private final List<MyObserver> observers = new ArrayList<>();
 
     // bag interface
     @Override
@@ -18,15 +18,14 @@ public class ObservableBag implements Bag, Iterable<String> {
 
     @Override
     public void remove(String s) {
-        if (items.get(s) > 1)
-            items.put(s, items.get(s) - 1);
+        if (items.get(s) > 1) items.put(s, items.get(s) - 1);
         else items.remove(s);
         notifyObservers();
     }
 
     @Override
     public int getCount(String s) {
-        return items.get(s);
+        return items.getOrDefault(s, 0);
     }
 
     // get method
