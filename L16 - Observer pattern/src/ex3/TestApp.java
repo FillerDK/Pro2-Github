@@ -17,8 +17,8 @@ public class TestApp {
         donaldDuck.registerObserver(buyer);
 
         // TODO: make purchaser buy 6 copies of donaldDuck
-        buyer.buyBook(donaldDuck, 6);
         System.out.println();
+        buyer.buyBook(donaldDuck, 6);
 
         Book java = new Book("Java");
         // TODO: add observers
@@ -26,8 +26,8 @@ public class TestApp {
         java.registerObserver(buyer);
 
         // TODO: make purchaser buy 8 copies of java
-        buyer.buyBook(java, 8);
         System.out.println();
+        buyer.buyBook(java, 8);
 
         Book designPatterns = new Book("Design Patterns");
         // TODO: add observers
@@ -35,8 +35,8 @@ public class TestApp {
         designPatterns.registerObserver(buyer);
 
         // TODO: make purchaser buy 10 copies of designPatterns
-        buyer.buyBook(designPatterns, 10);
         System.out.println();
+        buyer.buyBook(designPatterns, 10);
 
         Customer bob = new Customer("Bob");
         Customer alice = new Customer("Alice");

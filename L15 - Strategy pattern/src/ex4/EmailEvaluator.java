@@ -5,15 +5,18 @@ public class EmailEvaluator implements Evaluator {
     @Override
     public boolean isValid(String s) {
         boolean valid = true;
-        String[] words = s.split("[@\\.]", -1);
+        String[] parts = s.split("@", -1);
+        if (parts.length != 2) return false;
 
-        if (!s.contains("@"))
-            valid = false;
-        else
-            if (s.indexOf("@") != s.lastIndexOf("@"))
-                valid = false;
-        for (int i = 0; valid && i < words.length; i++)
-            valid = isWord(words[i]);
+        String[] locals = parts[0].split("\\.", -1);
+        String[] domain = parts[1].split("\\.", -1);
+        if (domain.length < 2) return false;
+
+        for (int i = 0; valid && i < locals.length; i++)
+            valid = isWord(locals[i]);
+        for (int i = 0; valid && i < domain.length; i++)
+            valid = isWord(domain[i]);
+
         return valid;
     }
 
@@ -23,6 +26,8 @@ public class EmailEvaluator implements Evaluator {
      * are in 'A'..'Z', 'a'..'z' or '0'..'9'.
      */
     public boolean isWord(String s) {
+        return s.matches("[A-Za-z0-9]+");
+        /*
         boolean valid = true;
         if (s.length() == 0)
             valid = false;
@@ -33,5 +38,6 @@ public class EmailEvaluator implements Evaluator {
             }
         }
         return valid;
+         */
     }
 }

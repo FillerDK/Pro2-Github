@@ -5,13 +5,9 @@ public class NumberEvaluator implements Evaluator {
     @Override
     public boolean isValid(String s) {
         try {
-            int num = Integer.parseInt(s);
+            double num = Double.parseDouble(s);
         } catch (NumberFormatException ex) {
-            try {
-                double num = Double.parseDouble(s);
-            } catch (NumberFormatException e) {
-                return false;
-            }
+            return false;
         }
         return true;
     }
