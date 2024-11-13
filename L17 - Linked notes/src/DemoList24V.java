@@ -9,8 +9,8 @@ public class DemoList24V {
         City amsterdam = new City("Amsterdam", 7_000_000);
         City oslo = new City("Oslo", 1_200_000);
 
-        List24V<City> list = new ArrayList24V<>();
-//        List24V<City> list = new SingleLinkedList24V<>();
+//        List24V<City> list = new ArrayList24V<>();
+        List24V<City> list = new SingleLinkedList24V<>();
 //        List24V<City> list = new DoubleLinkedList24V<>();
         list.add(0,paris);
         System.out.println(list);

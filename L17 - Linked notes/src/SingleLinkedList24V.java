@@ -55,14 +55,15 @@ public class SingleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public boolean contains(E e) {
-        // TODO
-        /*
-        Node<E> temp = head;
-        while (temp.next != null) {
-            if (head.equals(e)) return true;
+        if (head == null) return false;
 
+        if (head.element.equals(e)) return true;
+
+        Node<E> node = head;
+        while (node.next != null) {
+            if (node.next.element.equals(e)) return true;
+            node = node.next;
         }
-         */
         return false;
     }
 
@@ -96,7 +97,20 @@ public class SingleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public E get(int index) {
-        // TODO
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        if (head == null) return null;
+
+        if (index == 0) return head.element;
+
+        Node<E> node = head;
+        int i = 1;
+        while (node.next != null) {
+            if (index == i) return node.next.element;
+            node = node.next;
+            i++;
+        }
+
         return null;
     }
 
@@ -108,6 +122,29 @@ public class SingleLinkedList24V<E> implements List24V<E> {
     @Override
     public void add(int index, E e) {
         // TODO
+
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
+
+        if (index == 0) {
+            if (head == null) {
+                head = new Node<>(e);
+                size++;
+                return;
+            }
+
+            Node<E> temp = new Node<>(e);
+            temp.next = head;
+        }
+
+        Node<E> node = head;
+        int i = 1;
+        while (index != i) {
+            node = node.next;
+            i++;
+        }
+
+        node.next = new Node<>(e);
+        size++;
     }
 
     /**
@@ -126,7 +163,18 @@ public class SingleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public int indexOf(E e) {
-        // TODO
+        if (head == null) return -1;
+
+        if (head.element.equals(e)) return 0;
+
+        Node<E> node = head;
+        int i = 1;
+        while (node.next != null) {
+            if (node.next.element.equals(e)) return i;
+            node = node.next;
+            i++;
+        }
+
         return -1;
     }
 
