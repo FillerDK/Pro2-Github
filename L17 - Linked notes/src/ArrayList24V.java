@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /** An array based implementation of the List ADT. */
 public class ArrayList24V<E> implements List24V<E> {
@@ -26,7 +27,18 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public boolean remove(E e) {
-        // TODO
+        if (size == 0) return false;
+
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(e)) {
+                for (int j = i; j < size-1; j++) {
+                    data[j] = data[j+1];
+                }
+                size--;
+                data[size] = null;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -35,7 +47,8 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public boolean contains(E e) {
-        // TODO
+        for (int i = 0; i < size; i++)
+            if (data[i].equals(e)) return true;
         return false;
     }
 
@@ -72,8 +85,9 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public E get(int index) {
-        // TODO
-        return null;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        return data[index];
     }
 
     /**
@@ -83,7 +97,14 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public void add(int index, E e) {
-        // TODO
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
+
+        for (int i = size-1; i > index; i--) {
+            data[i] = data[i-1];
+        }
+
+        data[index] = e;
+        size++;
     }
 
     /**
@@ -92,8 +113,15 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public E remove(int index) {
-        // TODO
-        return null;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        E temp = data[index];
+        for (int i = index; i < size-1; i++) {
+            data[i] = data[i+1];
+        }
+        size--;
+        data[size] = null;
+        return temp;
     }
 
     /**
@@ -102,7 +130,9 @@ public class ArrayList24V<E> implements List24V<E> {
      */
     @Override
     public int indexOf(E e) {
-        // TODO
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(e)) return i;
+        }
         return -1;
     }
 
@@ -114,14 +144,39 @@ public class ArrayList24V<E> implements List24V<E> {
     @Override
     public Iterator<E> iterator() {
         // TODO
-        return null;
+        class MyIterator implements Iterator<E> {
+            // the node with the element to be returned by next()
+            int i = 0;
+            E e = data[i];
+
+            @Override
+            public boolean hasNext() {
+                return e != null;
+            }
+
+            @Override public E next() {
+                if (!this.hasNext()) throw new NoSuchElementException();
+
+                E element = e;
+                i++;
+                e = data[i];
+                return element;
+            }
+        }
+        return new MyIterator();
     }
 
     //-------------------------------------------
 
     @Override
     public String toString() {
-        // TODO
-        return null;
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < size; i++) {
+            sb.append(", ").append((data[i]));
+
+        }
+        if (sb.length() > 1) sb.delete(1, 3);
+        sb.append("]");
+        return sb.toString();
     }
 }

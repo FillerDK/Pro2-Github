@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /** A double-linked nodes based implementation of the List ADT. */
 public class DoubleLinkedList24V<E> implements List24V<E> {
@@ -31,7 +32,18 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public boolean remove(E e) {
-        // TODO
+        if (size == 0) return false;
+
+        Node<E> node = header.next;
+        while (node.next != trailer) {
+            if (node.element.equals(e)) {
+                node.prev.next = node.next;
+                node.next.prev = node.prev;
+                size--;
+                return true;
+            }
+            node = node.next;
+        }
         return false;
     }
 
@@ -40,7 +52,13 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public boolean contains(E e) {
-        // TODO
+        if (size == 0) return false;
+
+        Node<E> node = header.next;
+        while (node.next != trailer) {
+            if (node.element.equals(e)) return true;
+            node = node.next;
+        }
         return false;
     }
 
@@ -75,8 +93,14 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public E get(int index) {
-        // TODO
-        return null;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        Node<E> node = header.next;
+        for (int i = 0; i < index - 1; i++) {
+            node = node.next;
+        }
+
+        return node.element;
     }
 
     /**
@@ -86,7 +110,19 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public void add(int index, E e) {
-        // TODO
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException();
+
+        Node<E> node = header.next;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        Node<E> newNode = new Node<>(e);
+        // insert newNode between trailer.prev and trailer
+        newNode.prev = node.prev;
+        newNode.next = node;
+        node.prev.next = newNode;
+        node.prev = newNode;
+        size++;
     }
 
     /**
@@ -96,7 +132,17 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
     @Override
     public E remove(int index) {
         // TODO
-        return null;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        Node<E> node = header.next;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        size--;
+        return node.element;
     }
 
     /**
@@ -116,8 +162,24 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        // TODO
-        return null;
+        class MyIterator implements Iterator<E> {
+            // the node with the element to be returned by next()
+            Node<E> node = header.next;
+
+            @Override
+            public boolean hasNext() {
+                return (node != null && !node.equals(trailer));
+            }
+
+            @Override public E next() {
+                if (!this.hasNext()) throw new NoSuchElementException();
+
+                E element = node.element;
+                node = node.next;
+                return element;
+            }
+        }
+        return new MyIterator();
     }
 
     //-------------------------------------------
@@ -138,6 +200,14 @@ public class DoubleLinkedList24V<E> implements List24V<E> {
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> node = header.next;
+        while (node != trailer) {
+            sb.append(", ").append((node.element));
+            node = node.next;
+        }
+        if (sb.length() > 1) sb.delete(1, 3);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /** A single-linked nodes based implementation of the List ADT. */
 public class SingleLinkedList24V<E> implements List24V<E> {
@@ -129,21 +130,25 @@ public class SingleLinkedList24V<E> implements List24V<E> {
             if (head == null) {
                 head = new Node<>(e);
                 size++;
-                return;
+            } else {
+                Node<E> temp = head;
+                head = new Node<>(e);
+                head.next = temp;
+                size++;
             }
-
-            Node<E> temp = new Node<>(e);
-            temp.next = head;
+            return;
         }
 
         Node<E> node = head;
         int i = 1;
-        while (index != i) {
+        while (i < index) {
             node = node.next;
             i++;
         }
 
+        Node<E> temp = node.next;
         node.next = new Node<>(e);
+        node.next.next = temp;
         size++;
     }
 
@@ -153,8 +158,16 @@ public class SingleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public E remove(int index) {
-        // TODO
-        return null;
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
+
+        Node<E> node = head;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        Node<E> temp = node.next;
+        node.next = node.next.next;
+        size--;
+        return temp.element;
     }
 
     /**
@@ -185,15 +198,31 @@ public class SingleLinkedList24V<E> implements List24V<E> {
      */
     @Override
     public Iterator<E> iterator() {
-        // TODO
-        return null;
+        class MyIterator implements Iterator<E> {
+            // the node with the element to be returned by next()
+            Node<E> node = head;
+
+            @Override
+            public boolean hasNext() {
+                return node != null;
+            }
+
+            @Override public E next() {
+                if (!this.hasNext()) throw new NoSuchElementException();
+
+                E element = node.element;
+                node = node.next;
+                return element;
+            }
+        }
+        return new MyIterator();
     }
 
     //-------------------------------------------
 
     private static class Node<T> {
-        private final T element;
-        private Node<T> next;
+        final T element;
+        Node<T> next;
 
         public Node(T t) {
             this.element = t;
@@ -205,7 +234,14 @@ public class SingleLinkedList24V<E> implements List24V<E> {
 
     @Override
     public String toString() {
-        // TODO
-        return null;
+        StringBuilder sb = new StringBuilder("[");
+        Node<E> node = head;
+        while (node != null) {
+            sb.append(", ").append((node.element));
+            node = node.next;
+        }
+        if (sb.length() > 1) sb.delete(1, 3);
+        sb.append("]");
+        return sb.toString();
     }
 }
