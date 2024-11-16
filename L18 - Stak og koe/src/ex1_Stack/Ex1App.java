@@ -1,10 +1,10 @@
-package ex1;
+package ex1_Stack;
 
 public class Ex1App {
 
     public static void main(String[] args) {
-//        Stack24V<String> stack = new SingleLinkedStack24V<>();
-        ex1.Stack24V<String> stack = new ex1.ListStack24V<>();
+        Stack24V<String> stack = new SingleLinkedStack24V<>();
+//        Stack24V<String> stack = new ListStack24V<>();
 //        Stack24V<String> stack = new ArrayStack24V<>();
 
         stack.push("Tom");
@@ -38,7 +38,7 @@ public class Ex1App {
 
     /** Reverse the table. */
     public static <E> void reverse(E[] table) {
-        ex1.Stack24V<E> stack = new ex1.SingleLinkedStack24V<>();
+        Stack24V<E> stack = new SingleLinkedStack24V<>();
         // Stack24V<E> stack = new ListStack24V<>();
         // Stack24V<E> stack = new ArrayStack23Y<E>();
         for (E e : table) {

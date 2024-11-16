@@ -1,9 +1,9 @@
-package ex1;
+package ex1_Stack;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class ListStack24V<E> implements ex1.Stack24V<E> {
+public class ListStack24V<E> implements Stack24V<E> {
     // Implements a stack using a LinkedList.
     // The top of the stack is at the beginning of the LinkedList.
 

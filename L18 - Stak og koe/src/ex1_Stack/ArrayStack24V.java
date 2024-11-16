@@ -1,4 +1,4 @@
-package ex1;
+package ex1_Stack;
 
 // OPGAVE 1 med array.
 public class ArrayStack24V<E> implements Stack24V<E> {

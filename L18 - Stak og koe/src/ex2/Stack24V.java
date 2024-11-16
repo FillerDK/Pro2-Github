@@ -1,4 +1,4 @@
-package ex1_Stack;
+package ex2;
 
 public interface Stack24V<E> {
     /**

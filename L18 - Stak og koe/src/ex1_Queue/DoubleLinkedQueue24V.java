@@ -1,5 +1,7 @@
 package ex1_Queue;
 
+import java.util.NoSuchElementException;
+
 public class DoubleLinkedQueue24V<E> implements Queue24V<E> {
     // header.next points to the node at the front of the queue
     private Node<E> header = new Node<>(null);
@@ -18,7 +20,13 @@ public class DoubleLinkedQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public void add(E element) {
-
+        Node<E> newNode = new Node<>(element);
+        // insert newNode between trailer.prev and trailer
+        newNode.prev = trailer.prev;
+        newNode.next = trailer;
+        trailer.prev.next = newNode;
+        trailer.prev = newNode;
+        size++;
     }
 
     /**
@@ -27,8 +35,13 @@ public class DoubleLinkedQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public E remove() {
+        if (size == 0) throw new NoSuchElementException();
 
-        return null;
+        Node<E> node = header.next;
+        node.next.prev = header;
+        node.prev.next = node.next;
+        size--;
+        return node.element;
     }
 
     /**
@@ -37,8 +50,9 @@ public class DoubleLinkedQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public E element() {
+        if (size == 0) throw new NoSuchElementException();
 
-        return null;
+        return header.next.element;
     }
 
     /**

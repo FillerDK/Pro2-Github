@@ -4,9 +4,9 @@ import java.util.NoSuchElementException;
 
 public class Ex1App {
     public static void main(String[] args) {
-        Queue24V<String> queue = new SingleLinkedQueue24V<>();
+//        Queue24V<String> queue = new SingleLinkedQueue24V<>();
 //        Queue24V<String> queue = new DoubleLinkedQueue24V<>();
-//        Queue24V<String> queue = new ArrayQueue24V<>();
+        Queue24V<String> queue = new ArrayQueue24V<>();
 
         System.out.println("Empty queue = " + queue);
 

@@ -1,9 +1,9 @@
-package ex1;
+package ex1_Stack;
 
 import java.util.NoSuchElementException;
 
 // OPGAVE 1 med single-linked liste.
-public class SingleLinkedStack24V<E> implements ex1.Stack24V<E> {
+public class SingleLinkedStack24V<E> implements Stack24V<E> {
     // top of stack is at head of list
     private Node<E> head = null;
     // the number of element in the stack

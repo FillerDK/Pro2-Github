@@ -1,5 +1,7 @@
 package ex1_Queue;
 
+import java.util.NoSuchElementException;
+
 public class ArrayQueue24V<E> implements Queue24V<E> {
     // 0 is the index of the element at the front of the queue
     // size is the index of the first unused entry at the back of the queue,
@@ -14,7 +16,8 @@ public class ArrayQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public void add(E element) {
-
+        items[size] = element;
+        size++;
     }
 
     /**
@@ -23,8 +26,16 @@ public class ArrayQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public E remove() {
+        if (isEmpty()) throw new NoSuchElementException();
 
-        return null;
+        E e = items[0];
+        for (int i = 0; i < size-1; i++) {
+            items[i] = items[i+1];
+        }
+        items[size] = null;
+        size--;
+
+        return e;
     }
 
     /**
@@ -33,8 +44,9 @@ public class ArrayQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public E element() {
+        if (isEmpty()) throw new NoSuchElementException();
 
-        return null;
+        return items[0];
     }
 
     /**
