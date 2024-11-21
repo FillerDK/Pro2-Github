@@ -1,5 +1,6 @@
 package ex1_Queue;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class ArrayQueue24V<E> implements Queue24V<E> {
@@ -16,6 +17,9 @@ public class ArrayQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public void add(E element) {
+        if (size == items.length)
+            items = Arrays.copyOf(items, items.length * 2);
+
         items[size] = element;
         size++;
     }
@@ -29,11 +33,11 @@ public class ArrayQueue24V<E> implements Queue24V<E> {
         if (isEmpty()) throw new NoSuchElementException();
 
         E e = items[0];
-        for (int i = 0; i < size-1; i++) {
-            items[i] = items[i+1];
+        for (int i = 0; i < size - 1; i++) {
+            items[i] = items[i + 1];
         }
-        items[size] = null;
         size--;
+        items[size] = null;
 
         return e;
     }

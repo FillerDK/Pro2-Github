@@ -24,8 +24,6 @@ public class ParenthesisBracketListStack<E> implements Stack24V<E> {
      */
     @Override
     public E pop() {
-        if (isEmpty()) throw new NoSuchElementException();
-
         return stack.pop();
     }
 
