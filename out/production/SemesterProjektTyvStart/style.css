@@ -1,0 +1,28 @@
+/* Base checkbox style */
+.check-box .box {
+    -fx-border: none;
+    -fx-background-color: transparent;
+    -fx-background-image: url("rightArrow.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+
+
+/* Hide the default checkmark */
+.check-box .box .mark {
+    -fx-background-color: transparent;
+    -fx-shape: null; /* Removes the default mark shape */
+}
+
+
+.button {
+    -fx-background-image: url("barrel.png");
+    -fx-background-color: transparent;
+    -fx-padding: 45;
+}
+
+.progress-bar {
+    -fx-accent: green;
+}

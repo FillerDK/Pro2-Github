@@ -1,0 +1,21 @@
+/* Base style for the checkbox box */
+.check-box .box {
+    -fx-border: none;
+    -fx-background-color: transparent;
+    -fx-background-image: url("rightArrow.png");
+    -fx-background-size: contain; /* Ensures the arrow fits nicely */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center; /* Centers the image in the box */
+}
+
+/* Style for the selected checkbox */
+.check-box:selected .box {
+    -fx-background-image: url("downArrow.png");
+    -fx-background-color: transparent;
+}
+
+/* Hide the default checkmark */
+.check-box .box .mark {
+    -fx-background-color: transparent;
+    -fx-shape: null; /* Removes the default mark shape */
+}
