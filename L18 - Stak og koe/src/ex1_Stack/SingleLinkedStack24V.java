@@ -14,12 +14,6 @@ public class SingleLinkedStack24V<E> implements Stack24V<E> {
      */
     @Override
     public void push(E entry) {
-        if (head == null) {
-            head = new Node<>(entry);
-            size++;
-            return;
-        }
-
         Node<E> node = new Node<>(entry);
         node.next = head;
         head = node;

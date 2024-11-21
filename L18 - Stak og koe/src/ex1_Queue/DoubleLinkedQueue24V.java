@@ -37,11 +37,11 @@ public class DoubleLinkedQueue24V<E> implements Queue24V<E> {
     public E remove() {
         if (size == 0) throw new NoSuchElementException();
 
-        Node<E> node = header.next;
-        node.next.prev = header;
-        node.prev.next = node.next;
+        Node<E> temp = header.next;
+        temp.next.prev = header;
+        temp.prev.next = temp.next;
         size--;
-        return node.element;
+        return temp.element;
     }
 
     /**

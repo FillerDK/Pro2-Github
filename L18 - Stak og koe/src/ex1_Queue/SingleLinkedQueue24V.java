@@ -19,18 +19,16 @@ public class SingleLinkedQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public void add(E element) {
-        if (head == null) {
+        if (tail == null) {
             head = new Node<>(element);
             tail = head;
             size++;
             return;
         }
 
-        Node<E> node = head;
-        while (node.next != null) {
-            node = node.next;
-        }
-        tail = node.next = new Node<>(element);
+        Node<E> newNode = new Node<>(element);
+        tail.next = newNode;
+        tail = newNode;
         size++;
     }
 
@@ -40,12 +38,13 @@ public class SingleLinkedQueue24V<E> implements Queue24V<E> {
      */
     @Override
     public E remove() {
-        if (head == null) return null;
+        if (head == null) throw new NoSuchElementException();
 
-        Node<E> node = head;
+        E element = head.element;
         head = head.next;
+        if (head == null) tail = null;
         size--;
-        return node.element;
+        return element;
     }
 
     /**

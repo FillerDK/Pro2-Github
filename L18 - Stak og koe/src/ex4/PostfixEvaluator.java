@@ -34,6 +34,8 @@ public class PostfixEvaluator<E> {
             }
         }
 
+        if (stack.size() != 1) throw new RuntimeException();
+
         return stack.pop();
     }
 }
